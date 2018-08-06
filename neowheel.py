@@ -74,7 +74,7 @@ print(__version__, " ", __copyright__, " ", __license__)
 print("Start")
 
 # Randomly assign colors using wheel
-colors = [random.randint(0, 255) for x in range(1, pixel_count)]
+colors = [random.randint(0, 255) for x in range(0, pixel_count-1)]
 for x in range(0, (pixel_count - 1)):
     pixels[x] = wheel(colors[x])
     pixels.show()
@@ -90,7 +90,7 @@ while True:
     
     # so spin wheel
     newcolors = []
-    for x in range(0, (pixel_count - 1)):
+    for x in range(0, pixel_count-1):
         nc = (colors[x] + 8) % 256
         pixels[x] = wheel(nc)
         pixels.show()
