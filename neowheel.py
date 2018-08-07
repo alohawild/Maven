@@ -37,7 +37,9 @@ import adafruit_dotstar as dotstar
 # ######################## Definitions ##############################
 pixel_pin = board.D2  # The pin the NeoPixels are connected to
 
-pixel_count = 15  # Number of pixels in your strip
+pixel_count = 30  # Number of pixels in your strip
+
+color_change = 16 # Number to increase color change (how fast you want it)
 
 pixels = neopixel.NeoPixel(pixel_pin, pixel_count,
                            brightness=.4, auto_write=False)
@@ -74,11 +76,11 @@ print(__version__, " ", __copyright__, " ", __license__)
 print("Start")
 
 # Randomly assign colors using wheel
-colors = [random.randint(0, 255) for x in range(0, pixel_count-1)]
-for x in range(0, (pixel_count - 1)):
+colors = [random.randint(0, 255) for x in range(0, pixel_count)]
+for x in range(0, (pixel_count)):
     pixels[x] = wheel(colors[x])
     pixels.show()
-    
+
 # ######################## MAIN LOOP ##############################
 i = 0
 while True:
@@ -90,8 +92,8 @@ while True:
     
     # so spin wheel
     newcolors = []
-    for x in range(0, pixel_count-1):
-        nc = (colors[x] + 8) % 256
+    for x in range(0, pixel_count):
+        nc = (colors[x] + color_change) % 256
         pixels[x] = wheel(nc)
         pixels.show()
         newcolors.append(nc)
