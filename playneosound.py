@@ -112,7 +112,7 @@ def wheel(pos):
 ######################################################
 pixel_count = 10  # Number of pixels in your strip
 
-color_change = 16  # Number to increase color change (how fast you want it)
+color_change = 32  # Number to increase color change (how fast you want it)
 
 pixels = neopixel.NeoPixel(board.NEOPIXEL, pixel_count, brightness=0.1)
 pixels.fill((0, 0, 0))
@@ -162,7 +162,7 @@ while True:
     # so spin wheel
     newcolors = []
     for x in range(0, pixel_count):
-        nc = (colors[x] + color_change) % 256
+        nc = (colors[x] + random.randint(1, color_change)) % 256
         pixels[x] = wheel(nc)
         pixels.show()
         newcolors.append(nc)
