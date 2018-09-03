@@ -123,7 +123,7 @@ led = digitalio.DigitalInOut(board.D13)
 led.direction = digitalio.Direction.OUTPUT
 led.value = False
 
-######################### Start up ##############################
+#####################################################
 print("Neopixel Wheel and Equilizer")
 print(__version__, " ", __copyright__, " ", __license__)
 
@@ -152,7 +152,7 @@ while True:
     if (spin == 0):
         pixels.fill((0, 0, 0))
         pixels.show()
-        time.sleep(1.0) # Just for the coolness to have it stop and freeze
+        time.sleep(1.0)  # Just for the coolness to have it stop and freeze
         print("Running")  # Just a note to tell us everything is good
         colors = [random.randint(0, 255) for x in range(0, pixel_count)]
         for x in range(0, (pixel_count)):
@@ -175,11 +175,11 @@ while True:
     c = log_scale(constrain(magnitude, input_floor, input_ceiling),
                   input_floor, input_ceiling, 0, NUM_VALUES)
                   
-    pixels.brightness = (c/10.0) + 0.1 # Turn value into brightness values
+    pixels.brightness = (c/10.0) + 0.1  # Turn value into brightness values
     
     # On sound turn on LED
 
-    if (c == 0 ):
+    if (c == 0):
         led.value = False
     else:
         led.value = True
